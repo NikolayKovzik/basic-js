@@ -16,13 +16,13 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  * The result should be 9
  */
- function getMatrixElementsSum(matrix) {
-  return matrix.reduce((res,array,indMx) => {
-      return res + array.reduce((sum,elem,indArr)=>{
-         sum += (indMx==0 || matrix[indMx-1][indArr]!==0) ? matrix[indMx][indArr] : 0;
-         return sum;
-      },0)
-  },0);
+function getMatrixElementsSum(matrix) {
+  return matrix.reduce((res, array, indMx) => {
+    return res + array.reduce((sum, elem, indArr) => {
+      sum += ( !indMx || matrix[indMx - 1][indArr] !== 0) ? elem : 0;
+      return sum;
+    }, 0)
+  }, 0);
 }
 
 
