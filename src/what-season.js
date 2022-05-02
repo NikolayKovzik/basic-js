@@ -12,25 +12,29 @@ const { NotImplementedError } = require('../extensions/index.js');
  * 
  */
 function getSeason(...args) {
-    throw new NotImplementedError('Not implemented');
-//   if(args.length == 0)
-//     return 'Unable to determine the time of year!'
-//   if(!args[0]){
-//     return 'Invalid date!'
-//   }
-//   if(typeof args[0].getMonth !== 'function'){
-//     return 'Invalid date!'
-//   }
-//   let month = args[0].getMonth();
-//     if (month <= 1 || month == 11)
-//         return 'winter'
-//     if (month <= 4)
-//         return 'spring'
-//     if (month <= 7)
-//         return 'summer'
-//     if (month <= 10)
-//         return 'autumn'
-//     else return 'Invalid date!'
+  if (args.length == 0)
+    return 'Unable to determine the time of year!'
+  try {
+    args[0].getTime();
+  } catch {
+    throw new Error("Invalid date!");
+  }
+  if (!args[0]) {
+    return 'Invalid date!'
+  }
+  if (typeof args[0].getMonth !== 'function') {
+    return 'Invalid date!'
+  }
+  let month = args[0].getMonth();
+  if (month <= 1 || month == 11)
+    return 'winter'
+  if (month <= 4)
+    return 'spring'
+  if (month <= 7)
+    return 'summer'
+  if (month <= 10)
+    return 'autumn'
+  else return 'Invalid date!'
 }
 
 module.exports = {
